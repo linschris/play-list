@@ -6,6 +6,8 @@ import PopUp from 'reactjs-popup'
 import CreatePlaylist from './CreatePlaylist';
 import axios from "axios"
 
+const serverLink = "http://contraband-playlist.herokuapp.com/" //change to localhost later
+
 
 class Dashboard extends Component {
     constructor(props) {
@@ -28,6 +30,7 @@ class Dashboard extends Component {
 
         this.handlePlaylistSubmit = this.handlePlaylistSubmit.bind(this)
         this.setImageData = this.setImageData.bind(this)
+
     }
 
     componentDidMount(props) {
@@ -62,7 +65,7 @@ class Dashboard extends Component {
     }
 
     getPlaylistIDs() {
-        let users_url = "http://localhost:5000/users/" + this.state.id
+        let users_url = serverLink + "/users/" + this.state.id
         axios.get(users_url)
         .then(res => {console.log(res); this.setState({
             listOfPlaylistID: res.data.playlist
@@ -72,7 +75,7 @@ class Dashboard extends Component {
     getPlaylists() {
         let currentUserPlaylists = this.state.listOfPlaylistID
         console.log("CURRENT USER PLAYLISTS: ", currentUserPlaylists)
-        axios.post("http://localhost:5000/playlists/findPlaylists", { playlistArray: currentUserPlaylists })
+        axios.post(serverLink + "/playlists/findPlaylists", { playlistArray: currentUserPlaylists })
         .then(res => {
             console.log(res)
             this.setState({
@@ -115,7 +118,7 @@ class Dashboard extends Component {
     handlePlaylistSubmit = (e) => {
         e.preventDefault();
         let newPlaylist = { playlistName: this.state.playlistInput.title, playlistDesc: this.state.playlistInput.desc, songs: [], image: this.state.playlistInput.image, imageType: this.state.playlistInput.imageType}
-        axios.post("http://localhost:5000/playlists/add", newPlaylist)
+        axios.post(serverLink + "/playlists/add", newPlaylist)
         .then(res => {console.log(res.data); this.updateUserPlaylist(res.data); this.openCloseCP(); this.clearCP(); })
 
     }
@@ -127,7 +130,7 @@ class Dashboard extends Component {
         }
         let listOfIDs = this.state.listOfPlaylistID; let userID = this.state.id;
         console.log("PLAYLIST IDS: ", listOfIDs)
-        axios.post("http://localhost:5000/users/updatePlaylist", {id: userID, playlist: listOfIDs})
+        axios.post(serverLink + "/users/updatePlaylist", {id: userID, playlist: listOfIDs})
             .then(res => {console.log(res); this.getPlaylists()})
     }
 
@@ -138,7 +141,7 @@ class Dashboard extends Component {
         let playlistID = this.state.listOfPlaylistID[index]
         this.state.listOfPlaylistID.splice(index, 1)
         this.state.listOfPlaylists.splice(index, 1)
-        axios.delete("http://localhost:5000/playlists/delete/" + playlistID)
+        axios.delete(serverLink + "/playlists/delete/" + playlistID)
         .then(res => { console.log(res); this.updateUserPlaylist() })
     }
 
@@ -170,6 +173,7 @@ class Dashboard extends Component {
 
     render() { 
         console.log(this.state.playlistInput)
+        console.log(serverLink)
         return (
             <div id="dashboard-wrapper">
                 <div id="dashboard-title">

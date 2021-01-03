@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 
+const serverLink = "http://contraband-playlist.herokuapp.com/" //change to localhost later
+
+
 
 const EditSong = (props) => {
     const [originalInfo, setOriginalInfo] = useState(null)
@@ -9,7 +12,7 @@ const EditSong = (props) => {
     const id = useParams().id;
 
     useEffect(()=> {
-        axios.get("http://localhost:5000/songs/" + id)
+        axios.get(serverLink + "/songs/" + id)
         .then(res => {
             setOriginalInfo(res.data)
         })
@@ -29,7 +32,7 @@ const EditSong = (props) => {
         console.log(newTitle + " " + newDesc + " " + newLink)
         let newSong = {title: newTitle, desc: newDesc, link: newLink}
         console.log("ID:", id)
-        axios.post("http://localhost:5000/songs/updateSong", {id: id, info: newSong})
+        axios.post(serverLink + "/songs/updateSong", {id: id, info: newSong})
         .then(res => {
             console.log(res)
         })

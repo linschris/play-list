@@ -7,8 +7,7 @@ import CreateSong from "./CreateSong";
 import getAverageRGB from "./getAverageRGB"
  
 
-
-
+const serverLink = "https://contraband-playlist.herokuapp.com/" //change to localhost later
 
 
 const Playlist = () => {
@@ -73,7 +72,7 @@ const Playlist = () => {
 
     function handleSongSubmit(e) {
         e.preventDefault();
-        axios.post("http://localhost:5000/songs/add", songInfo)
+        axios.post(serverLink + "/songs/add", songInfo)
         .then(res => {
             console.log("DATA: ", res.data)
             setSongArray([...songArray, res.data])
@@ -88,7 +87,7 @@ const Playlist = () => {
     }
 
     function updatePlaylists() {
-        axios.post("http://localhost:5000/playlists/updatePlaylistSongs", {id: id, newSongs: songArray})
+        axios.post(serverLink + "/playlists/updatePlaylistSongs", {id: id, newSongs: songArray})
         .then(res => {
             console.log(res)
             updateSongInfoArray()
@@ -96,7 +95,7 @@ const Playlist = () => {
     }
 
     function updateSongInfoArray() {
-        axios.post("http://localhost:5000/songs/findSongs", {songArray: songArray})
+        axios.post(serverLink + "/songs/findSongs", {songArray: songArray})
         .then(res => {
             console.log(res)
             setSongArrayInfo(res.data)
@@ -105,7 +104,7 @@ const Playlist = () => {
 
     function deleteSong(e, id) {
         e.preventDefault();
-        axios.delete("http://localhost:5000/songs/deleteSong/" + id)
+        axios.delete(serverLink + "/songs/deleteSong/" + id)
         .then(res => console.log(res))
         let songIndex = songArray.indexOf(id)
         console.log(id)
@@ -136,7 +135,7 @@ const Playlist = () => {
       );
     
     function fetchData(id) {
-        let route = "http://localhost:5000/playlists/" + id
+        let route = serverLink + "/playlists/" + id
         let data = null
         axios.get(route)
             .then(res => {

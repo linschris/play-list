@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import {
-    Link
-  } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios"
 import '../assets/styles/SignUpScreen.css'
+
+const serverLink = "https://contraband-playlist.herokuapp.com/" //change to localhost later
+ 
 
 
 class LoginScreen extends Component {
@@ -27,7 +28,7 @@ class LoginScreen extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         console.log("Submitted: ", this.state)
-        axios.post("http://localhost:5000/users/add", {
+        axios.post(serverLink + "/users/add", {
             username: this.state.username,
             password: this.state.password
         })
