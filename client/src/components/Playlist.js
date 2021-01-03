@@ -5,9 +5,10 @@ import axios from "axios"
 import VideoCard from "./VideoCard";
 import CreateSong from "./CreateSong";
 import getAverageRGB from "./getAverageRGB"
+import inDevelopment from "../index"
  
 
-const serverLink = "https://contraband-playlist.herokuapp.com" //change to localhost later
+const serverLink = (inDevelopment) ? "http://localhost:5000" : "https://contraband-playlist.herokuapp.com" //change to localhost later
 
 
 const Playlist = () => {
@@ -47,7 +48,8 @@ const Playlist = () => {
         let playlistImage = document.getElementById("playlist-wrapper")
         console.log(createSongPanel.style.display)
         if(createSongPanel) {
-            let newSetting = createSongPanel.style.display == "none" ? "block" : "none"
+            let newSetting = (createSongPanel.style.display == "none" || createSongPanel.style.display == "") ? "block" : "none"
+            console.log(newSetting)
             createSongPanel.style.display = newSetting
             if(newSetting == "block") { 
                 createButton.scrollIntoView()
@@ -124,7 +126,7 @@ const Playlist = () => {
                 let index = songArray.indexOf(currentSong)
                 let route = "/video/" + songArray[index]
                 if(songArray[index] !== undefined && songArrayInfo[index] !== undefined) {
-                    return <Link style={{"textDecoration": "none"}} to={route} key={songArray[index]}><VideoCard title={songArrayInfo[index].songName || "No title found."} desc={songArrayInfo[index].songDesc || "No description found."} id={songArray[index]} deleteSong={(e, id) => deleteSong(e, id)} /></Link>
+                    return <Link style={{"textDecoration": "none"}} to={route} key={songArray[index]}><VideoCard title={songArrayInfo[index].songName || "No title found."} desc={songArrayInfo[index].songDesc || "No description found."} id={songArray[index]} playlistId = {id} deleteSong={(e, id) => deleteSong(e, id)} /></Link>
                 }
                 else { return null; }
              })}   

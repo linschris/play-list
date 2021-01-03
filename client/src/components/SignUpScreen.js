@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import axios from "axios"
 import '../assets/styles/SignUpScreen.css'
+import inDevelopment from "../index"
 
-const serverLink = "https://contraband-playlist.herokuapp.com" //change to localhost later
+const serverLink = (inDevelopment) ? "http://localhost:5000" : "https://contraband-playlist.herokuapp.com" //change to localhost later
+
+
  
 
 
@@ -34,6 +37,7 @@ class LoginScreen extends Component {
         })
             .then(res => {
                 console.log(res)
+                window.location.href = "/"
                 
             })
             .catch(err => {
@@ -64,17 +68,17 @@ class LoginScreen extends Component {
         return (  
             <>
             <form id="sign-up-form">
-                <div id="username">Sign Up:</div>   
+                <div className="sign-form-title">Sign Up:</div>   
                 <div id="user-input">
-                <div id="user-icon"><i class="fa fa-user"></i></div>
+                    <div id="user-icon"><i class="fa fa-user"></i></div>
                     <input id="username-input" name="username" type="text" placeholder="Create a username:" value={this.state.username || ""} onChange={(e) => this.handleChange(e)}></input>
                 </div>
-                <div id="pass-input">
+                <div class="pass-input">
                     <div id="pass-icon"><i class="fa fa-key"></i></div>
                     <input id="password" name="password" type="password" placeholder="Create a password:" value={this.state.password || ""} onChange={(e) => this.handleChange(e)}></input>
                     <button id="seepass-button" onClick={(e) => {this.seePassword(e)}}><i id="eye-icon" class="fa fa-eye-slash"></i></button>
                 </div>
-                <button id="login-button" onClick={(e) => this.handleSubmit(e)}>Create an Account</button>
+                <div id="login-button-wrapper"><button id="login-button" onClick={(e) => this.handleSubmit(e)}>Create an Account</button></div>
                 <div id="sign-up-text">Have an account? <br></br> Login <Link to="/">here.</Link></div>
             </form> 
             

@@ -13,8 +13,10 @@
 }
 
 .videoFrame {
-    width: 100% !important;
+    position: relative;
+    width: 25rem !important;
     height: 50vh !important;
+    left: calc(50% - 12.5rem) !important;
 }
 
 #video-controls {
@@ -48,6 +50,11 @@
     text-align: center;
 }
 
+#volume-controls {
+    position: relative;
+    width: 10rem;
+    left: calc(50% - 5rem);
+}
 
 #volume-controls > button {
     appearance: none;
@@ -79,4 +86,12 @@
 .off:hover {
     color:white!important;
     background-color: rgb(226, 69, 69) !important;
+}
+
+
+@media screen and (min-width: 800px) {
+    .videoFrame {
+        width: 40rem !important;
+        left: calc(50% - 20rem) !important;
+    }
 }

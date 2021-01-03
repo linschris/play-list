@@ -3,12 +3,25 @@
     text-align: center;
 }
 
+#login-button-wrapper {
+    margin-left: 0;
+    padding: 0;
+    width: 100%;
+}
+
 #login-button {
-    width: 50% !important;
-    left: 25% !important;
+    position: relative;
+    width: 15rem !important;
+    left: calc(50% - 7.5rem) !important;
+    margin-left: 0;
     background-color: rgb(39, 168, 185);
     color: white;
+    padding: 0.5rem;
+    font-family: inherit;
+    border-radius: 0.25rem;
+    border: 0;
 }
+
 
 #sign-up-text {
     color: white;

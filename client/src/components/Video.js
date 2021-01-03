@@ -6,7 +6,11 @@ import screenfull from "screenfull"
 import axios from "axios"
 import '../assets/styles/Video.css'
 import '../assets/styles/fonts.css'
+import inDevelopment from "../index";
 // import VolumeSlider from "./VolumeSlider";
+
+const serverLink = (inDevelopment) ? "http://localhost:5000" : "https://contraband-playlist.herokuapp.com" //change to localhost later
+
 
 
 
@@ -15,7 +19,7 @@ class Video extends Component {
         super(props)
 
         this.state = {
-            link: "https://www.youtube.com/watch?v=tTwav32SvJA",
+            link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
             embedLink: null,
             title: null,
             desc: null,
@@ -49,11 +53,13 @@ class Video extends Component {
     }
 
     getEmbedVideo() {
-       let videoID = this.state.link.split("v=")[1]
-       let embedURL = "https://www.youtube.com/embed/" + videoID
-        this.setState({
-            embedLink: embedURL
-        })
+        if(this.state.link !== null && this.state.link !== undefined) {
+            let videoID = this.state.link.split("v=")[1]
+            let embedURL = "https://www.youtube.com/embed/" + videoID
+                this.setState({
+                    embedLink: embedURL
+                })
+        }
     }
 
     getOnOff = (boolean) => {
@@ -61,7 +67,7 @@ class Video extends Component {
     }
 
     fetchData(id) {
-        let route = "http://localhost:5000/songs/" + id
+        let route = serverLink + "/songs/" + id
         axios.get(route)
         .then(res => {
             console.log(res.data)

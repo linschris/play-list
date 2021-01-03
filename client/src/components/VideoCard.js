@@ -13,7 +13,7 @@ function VideoCard(props) {
                 {props.title || "No title found."}
                 <div id="desc">{props.desc || "This is a description. Feel free to add a description to highlight what this video talks about."}</div>
             </div>
-            <Link to={{pathname: "/editSong/" + props.id}}><button class="edit-button"><i class="fa fa-edit"></i></button></Link>
+            <Link to={{pathname: "/editSong/" + props.id, state: {playlistId: props.playlistId}}}><button class="edit-button"><i class="fa fa-edit"></i></button></Link>
             <button class="trash-button" onClick={(e) => props.deleteSong(e, props.id)}><i class="fa fa-trash"></i></button>
         </div>
     )

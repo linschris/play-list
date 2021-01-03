@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios"
 import '../assets/styles/LoginScreen.css'
-const serverLink = "https://contraband-playlist.herokuapp.com" //change to localhost later
+import inDevelopment from '../index';
+
+const serverLink = (inDevelopment) ? "http://localhost:5000" : "https://contraband-playlist.herokuapp.com" //change to localhost later
 
 
 
@@ -71,17 +73,17 @@ class LoginScreen extends Component {
         return (  
             <>
             <form id="sign-in-form">
-                <div id="username">Sign In:</div>   
+                <div class="sign-form-title">Sign In:</div>   
                 <div id="user-input">
                 <div id="user-icon"><i className="fa fa-user"></i></div>
                     <input id="username-input" name="username" type="text" placeholder="Username:" value={this.state.username || ""} onChange={(e) => this.handleChange(e)}></input>
                 </div>
-                <div id="pass-input">
+                <div class="pass-input">
                     <div id="pass-icon"><i className="fa fa-key"></i></div>
                     <input id="password" name="password" type="password" placeholder="Password:" value={this.state.password || ""} onChange={(e) => this.handleChange(e)}></input>
                     <button id="seepass-button" onClick={(e) => {this.seePassword(e)}}><i id="eye-icon" className="fa fa-eye-slash"></i></button>
                 </div>
-                <button id="login-button" onClick={(e) => this.handleSubmit(e)}>Login</button>
+               <div id="login-button-wrapper"><button id="login-button" onClick={(e) => this.handleSubmit(e)}>Login</button></div>
                 <div id="sign-up-text">Don't have an account? <br></br> Don't worry, sign up <Link to="/signup">here.</Link></div>
             </form> 
             

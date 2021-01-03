@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useLocation } from "react-router-dom"
 import axios from "axios"
+import inDevelopment from "../index"
 
-const serverLink = "https://contraband-playlist.herokuapp.com" //change to localhost later
-
+const serverLink = (inDevelopment) ? "http://localhost:5000" : "https://contraband-playlist.herokuapp.com" //change to localhost later
 
 
 const EditSong = (props) => {
     const [originalInfo, setOriginalInfo] = useState(null)
     const [formInput, setFormInput] = useState({title: null, link: null, desc: null})
     const id = useParams().id;
+    const location = useLocation().state.playlistId;
 
     useEffect(()=> {
         axios.get(serverLink + "/songs/" + id)
@@ -35,6 +36,9 @@ const EditSong = (props) => {
         axios.post(serverLink + "/songs/updateSong", {id: id, info: newSong})
         .then(res => {
             console.log(res)
+            console.log(id)
+            console.log(location)
+            window.location.href = "/playlist/" + location
         })
         //window.location.href = "" <-- url back
     }

@@ -19,9 +19,10 @@ body {
 #create-playlist-wrapper {
     position: relative;
     top: 10%;
-    width: 100%;
+    width: 25rem;
     display: none;
     margin-bottom: 2rem;
+    left: calc(50% - 12.5rem)
 }
 
 /* To all elements under any form */
@@ -56,7 +57,7 @@ input[type="text"]:focus, textarea:focus, input[type="password"]:focus{
 }
 
 #create-desc {
-    height: 10vh;
+    height: 5rem;
 }
 
 #create-button {
@@ -92,3 +93,9 @@ input[type="text"]:focus, textarea:focus, input[type="password"]:focus{
     color: transparent;
 }
 
+@media screen and (min-width: 800px) {
+    #create-playlist-wrapper {
+        width: 50rem !important;
+        left: calc(50% - 25rem) !important;
+    }
+}

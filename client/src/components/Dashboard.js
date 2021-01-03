@@ -5,8 +5,10 @@ import PlaylistCard from './PlaylistCard';
 import PopUp from 'reactjs-popup'
 import CreatePlaylist from './CreatePlaylist';
 import axios from "axios"
+import inDevelopment from "../index"
 
-const serverLink = "https://contraband-playlist.herokuapp.com" //change to localhost later
+
+const serverLink = (inDevelopment) ? "http://localhost:5000" : "https://contraband-playlist.herokuapp.com" //change to localhost later
 
 
 class Dashboard extends Component {
@@ -65,7 +67,7 @@ class Dashboard extends Component {
     }
 
     getPlaylistIDs() {
-        let users_url = serverLink + "/users/" + this.state.id
+        let users_url =  serverLink + "/users/" + this.state.id
         axios.get(users_url)
         .then(res => {console.log(res); this.setState({
             listOfPlaylistID: res.data.playlist
@@ -173,7 +175,6 @@ class Dashboard extends Component {
 
     render() { 
         console.log(this.state.playlistInput)
-        console.log(serverLink)
         return (
             <div id="dashboard-wrapper">
                 <div id="dashboard-title">

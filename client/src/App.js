@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   BrowserRouter as Router, 
   Route,
@@ -16,20 +17,23 @@ import EditPlaylist from "./components/EditPlaylist.js";
 import CreateSong from "./components/CreateSong.js";
 
 
+
+
+
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/" component={LoginScreen}></Route>
-          <Route path="/signup" component={SignUpScreen}></Route>
-          <Route path="/dashboard" component={Dashboard} render={(props) => <Dashboard {...props} />}></Route>  
-          <Route path="/create" component={CreatePlaylist}></Route>
-          <Route path="/playlist/:id" children={<Playlist />}></Route>
-          <Route path="/video/:id" children={<Video />}></Route>
-          <Route path="/editPlaylist/:id" children={<EditPlaylist />}></Route>
-          <Route path="/editSong/:id" children={<EditSong />}></Route>
-          <Route component={NoMatch}></Route>
+            <Route exact path="/" component={LoginScreen}></Route>
+            <Route path="/signup" component={SignUpScreen}></Route>
+            <Route path="/dashboard" component={Dashboard} render={(props) => <Dashboard {...props} />}></Route>  
+            <Route path="/create" component={CreatePlaylist}></Route>
+            <Route path="/playlist/:id" children={<Playlist />}></Route>
+            <Route path="/video/:id" children={<Video />}></Route>
+            <Route path="/editPlaylist/:id" children={<EditPlaylist />}></Route>
+            <Route path="/editSong/:id" children={<EditSong />}></Route>
+            <Route component={NoMatch}></Route>
         </Switch>
       </Router>
 
