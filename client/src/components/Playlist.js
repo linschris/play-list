@@ -7,7 +7,7 @@ import CreateSong from "./CreateSong";
 import getAverageRGB from "./getAverageRGB"
  
 
-const serverLink = "https://contraband-playlist.herokuapp.com/" //change to localhost later
+const serverLink = "https://contraband-playlist.herokuapp.com" //change to localhost later
 
 
 const Playlist = () => {

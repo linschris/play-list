@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios"
 import '../assets/styles/SignUpScreen.css'
 
-const serverLink = "https://contraband-playlist.herokuapp.com/" //change to localhost later
+const serverLink = "https://contraband-playlist.herokuapp.com" //change to localhost later
  
 
 

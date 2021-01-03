@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios"
 import '../assets/styles/LoginScreen.css'
-const serverLink = "https://contraband-playlist.herokuapp.com/" //change to localhost later
+const serverLink = "https://contraband-playlist.herokuapp.com" //change to localhost later
 
 
 

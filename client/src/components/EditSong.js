@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 
-const serverLink = "http://contraband-playlist.herokuapp.com/" //change to localhost later
+const serverLink = "http://contraband-playlist.herokuapp.com" //change to localhost later
 
 
 
