@@ -1,0 +1,55 @@
+import React, { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import axios from "axios"
+
+
+const EditSong = (props) => {
+    const [originalInfo, setOriginalInfo] = useState(null)
+    const [formInput, setFormInput] = useState({title: null, link: null, desc: null})
+    const id = useParams().id;
+
+    useEffect(()=> {
+        axios.get("http://localhost:5000/songs/" + id)
+        .then(res => {
+            setOriginalInfo(res.data)
+        })
+    }, [id])
+
+    function handleChange(e) {
+        const {name, value} = e.target
+        let newFormInput = {...formInput, [name]: value}
+        setFormInput(newFormInput)
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        let newTitle = (formInput.title || formInput.title === " ") ? formInput.title : originalInfo.songName 
+        let newDesc = (formInput.desc || formInput.desc === " ") ? formInput.desc : originalInfo.songDesc 
+        let newLink = (formInput.link || formInput.link === " ") ? formInput.link : originalInfo.songLink 
+        console.log(newTitle + " " + newDesc + " " + newLink)
+        let newSong = {title: newTitle, desc: newDesc, link: newLink}
+        console.log("ID:", id)
+        axios.post("http://localhost:5000/songs/updateSong", {id: id, info: newSong})
+        .then(res => {
+            console.log(res)
+        })
+        //window.location.href = "" <-- url back
+    }
+
+    return (
+        <>
+        <div class="create-wrapper"> 
+            <form class="form">
+                <div class="form-title">Edit Song:</div>   
+                <div id="edit-directions">Update one or more of the fields, leaving fields blank for attributes you don't want to change.</div>
+                <input name="title" type="text" placeholder="New Song/Video Title" onChange={(e) => handleChange(e)}></input>
+                <input name="link" type="text" placeholder="Link" onChange={(e) => handleChange(e)}></input>
+                <textarea name="desc" id="create-desc" placeholder="New description" onChange={(e) => handleChange(e)}></textarea>
+                <button id="create-button" onClick={(e) => handleSubmit(e)}>Edit</button>
+            </form> 
+        </div>
+        </>
+    )
+}
+ 
+export default EditSong;

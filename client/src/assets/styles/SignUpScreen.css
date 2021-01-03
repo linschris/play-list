@@ -1,0 +1,48 @@
+#pass-input, #user-input {
+    display: flex;
+    flex-direction: row;
+}
+
+
+#pass-input > *, #user-input > *{
+    width: 100%;
+    padding: 0.5rem; 
+    font-family: inherit;
+    border-radius: 0.25rem;
+    border: 0;
+
+}
+
+#username-input, #password {
+    padding-left: 2rem;
+}
+
+#user-icon, #pass-icon {
+    position: absolute;
+    left: 0.75rem;
+    width: 5% !important;
+    color: gray;
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif !important;
+}
+#pass-icon {
+    left: 0.7rem;
+}
+
+
+#seepass-button {
+    position: relative;
+    left: 90%;
+    width: 5% !important;
+    font-size: 1rem;
+    background-color: black;
+    color: gray;
+    margin-top: 0rem;
+    left: 0;
+}
+
+
+#seepass-button:focus {
+    outline:none;
+}
+

@@ -1,0 +1,118 @@
+
+#playlist-wrapper {
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    height: 150%;
+    overflow: hidden;
+    position: absolute;
+    font-family: "Raleway", sans-serif;
+}
+
+#playlist-picture {
+    position: relative;
+    top: 5%;
+    left: 35%;
+    width: 30%;
+    height: auto;
+    border-radius: 1rem;   
+    box-shadow: 0rem 0.5rem 2rem gray;
+}
+
+#playlist-title {
+    position: relative;
+    text-align: center;
+    top: 5%;
+    color: white;
+}
+#playlist-desc {
+    position: relative;
+    top: 5%;
+    text-align: center;
+    color: white;
+}
+
+#create-song-button {
+    position: relative;
+    display: block;
+    top: 10%;
+    width: 5rem;
+    left: calc(50% - 2.5rem)
+}
+#song-plus {
+    font-size: 1rem;
+}
+
+#videos-wrapper {
+    position: relative;
+    width: 95%;
+    top: 10%;
+}
+
+
+#video-card-wrapper {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    margin-top: 0.25rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+#title {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    color: white;
+    
+}
+#desc {
+    position: relative;
+    height: 100%;
+    width: 30%;
+    color: rgb(156, 156, 156);
+}
+
+#edit {
+    position: relative;
+    width: 10%;
+    left: -5%;
+    color: white;
+}
+
+.edit-button {
+    background-color: black;
+    border: 0;
+    color: white;
+    font-size: 1.5rem;
+    height: 100%;
+}
+
+.trash-button {
+    position: relative;
+    background-color: black;
+    color: lightcoral;
+    border: 0;
+    font-size: 1.5rem;
+    height: 100%;
+}
+
+
+
+#video-card-wrapper > div {
+    /* border-right: 2px solid white; */
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    text-overflow: ellipsis !important;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#create-song-wrapper {
+    display: none;
+    position: relative;
+    top: 10%;
+}
+

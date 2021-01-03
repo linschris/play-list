@@ -1,0 +1,16 @@
+#username {
+    color: white;
+    text-align: center;
+}
+
+#login-button {
+    width: 50% !important;
+    left: 25% !important;
+    background-color: rgb(39, 168, 185);
+    color: white;
+}
+
+#sign-up-text {
+    color: white;
+}
+

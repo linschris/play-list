@@ -1,0 +1,82 @@
+
+#video-wrapper {
+    width: 100%;
+    height: auto;
+    font-family: "Raleway", sans-serif;
+    color: white;
+}
+
+#video-title {
+    width: 100%;
+    text-align: center;
+    
+}
+
+.videoFrame {
+    width: 100% !important;
+    height: 50vh !important;
+}
+
+#video-controls {
+    width: 100%;
+    height: auto;
+}
+
+
+#video-volume {
+    opacity: 0.7;
+    appearance: none;
+    background: black;
+    border-radius: 1rem;
+    height: 0.5rem;
+}
+
+.thin {
+    font-weight: 300;
+}
+
+#video-volume:hover, #video-volume:focus {
+    opacity: 1;
+}
+
+#video-fs {
+    float: right;
+}
+
+#video-desc {
+    width: 100%;
+    text-align: center;
+}
+
+
+#volume-controls > button {
+    appearance: none;
+    border: 0;
+    border-radius: 1rem;
+    font-family: inherit;
+}
+#volume-controls > button {
+    appearance: none;
+    border: 0;
+    background-color: white;
+    color: black;
+    border-radius: 1rem;
+    font-family: inherit;
+}
+
+.on {
+    color: white !important;
+    background-color: rgb(115, 235, 115) !important;
+}
+.on:hover {
+    color: white !important;
+    background-color: rgb(57, 216, 57) !important;
+}
+.off {
+    color:white!important;
+    background-color: rgb(247, 119, 119) !important;
+}
+.off:hover {
+    color:white!important;
+    background-color: rgb(226, 69, 69) !important;
+}
