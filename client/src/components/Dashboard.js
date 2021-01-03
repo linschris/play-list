@@ -6,7 +6,7 @@ import PopUp from 'reactjs-popup'
 import CreatePlaylist from './CreatePlaylist';
 import axios from "axios"
 
-const serverLink = "http://contraband-playlist.herokuapp.com" //change to localhost later
+const serverLink = "https://contraband-playlist.herokuapp.com" //change to localhost later
 
 
 class Dashboard extends Component {
