@@ -1,6 +1,10 @@
 {
   "name": "backend",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.18.x",
+    "npm": "6.x"
+  },
   "description": "Backend for play-list",
   "main": "index.js",
   "scripts": {
@@ -20,6 +24,7 @@
     "express": "^4.17.1",
     "g": "^2.0.1",
     "heroku": "^7.47.6",
-    "mongoose": "^5.11.8"
+    "mongoose": "^5.11.8",
+    "react-router-dom": "^5.2.0"
   }
 }
