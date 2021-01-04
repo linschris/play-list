@@ -9,7 +9,9 @@ import '../assets/styles/fonts.css'
 import inDevelopment from "../index";
 // import VolumeSlider from "./VolumeSlider";
 
-const serverLink = (inDevelopment) ? "http://localhost:5000" : "https://contraband-playlist.herokuapp.com" //change to localhost later
+var serverLink;
+if(inDevelopment) serverLink = "http://localhost:5000/api" 
+else { serverLink = "https://contraband-playlist.herokuapp.com/api" }  //change to localhost later
 
 
 

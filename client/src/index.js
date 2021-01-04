@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 
-const inDevelopment = false;
+const inDevelopment = true;
 export default inDevelopment;
 
 ReactDOM.render(

@@ -4,8 +4,9 @@ import axios from "axios"
 import '../assets/styles/LoginScreen.css'
 import inDevelopment from '../index';
 
-const serverLink = (inDevelopment) ? "http://localhost:5000" : "https://contraband-playlist.herokuapp.com" //change to localhost later
-
+var serverLink;
+if(inDevelopment) serverLink = "http://localhost:5000/api" 
+else { serverLink = "https://contraband-playlist.herokuapp.com/api" } 
 
 
 class LoginScreen extends Component {
@@ -64,6 +65,8 @@ class LoginScreen extends Component {
 
 
     render() { 
+        console.log(inDevelopment)
+        console.log(serverLink)
         let user = this.state;
         let userData = user.data;
         let userInfo = []

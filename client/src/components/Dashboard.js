@@ -7,8 +7,9 @@ import CreatePlaylist from './CreatePlaylist';
 import axios from "axios"
 import inDevelopment from "../index"
 
-
-const serverLink = (inDevelopment) ? "http://localhost:5000" : "https://contraband-playlist.herokuapp.com" //change to localhost later
+var serverLink;
+if(inDevelopment) serverLink = "http://localhost:5000/api" 
+else { serverLink = "https://contraband-playlist.herokuapp.com/api" } 
 
 
 class Dashboard extends Component {
@@ -175,6 +176,7 @@ class Dashboard extends Component {
 
     render() { 
         console.log(this.state.playlistInput)
+        console.log(inDevelopment)
         return (
             <div id="dashboard-wrapper">
                 <div id="dashboard-title">

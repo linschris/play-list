@@ -28,15 +28,16 @@ const playlistsRouter = require('./routes/playlists')
 const songsRouter = require('./routes/songs')
 
 
-app.use('/users', usersRouter)
-app.use('/playlists', playlistsRouter)
-app.use('/songs', songsRouter)
-
-app.get('*', (req, res) => res.sendFile(path.resolve('client', 'build', 'index.html')));
+app.use('/api/users', usersRouter)
+app.use('/api/playlists', playlistsRouter)
+app.use('/api/songs', songsRouter)
 
 if(process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
 }
+
+app.get('*', (req, res) => res.sendFile(path.resolve('client', 'build', 'index.html')));
+
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port: ${PORT}`)
