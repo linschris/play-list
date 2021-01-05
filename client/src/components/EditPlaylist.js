@@ -16,7 +16,6 @@ const EditPlaylist = (props) => {
        
 
     useEffect(()=> {
-        console.log(playlistInfo)
         setOriginalInfo(playlistInfo)
     }, [id])
 
