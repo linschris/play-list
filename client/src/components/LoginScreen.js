@@ -29,14 +29,12 @@ class LoginScreen extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Submitted: ", this.state)
         axios.post(serverLink + "/users/login", {
             username: this.state.username,
             password: this.state.password
         })
             .then(res => {
                 if(res.data !== null) {
-                    console.log(res.data)
                     this.setState(prevState => ({
                         ...prevState, data: res.data, loggedIn: true
                     }))
@@ -60,17 +58,17 @@ class LoginScreen extends Component {
         let newIcon = classToChange === "fa-eye" ? "fa-eye-slash" : "fa-eye"
         eyeIcon.classList.add(newIcon)
 
-        console.log(classToChange)
+    }
+
+    componentDidMount() {
     }
 
 
     render() { 
-        console.log(inDevelopment)
-        console.log(serverLink)
         let user = this.state;
         let userData = user.data;
         let userInfo = []
-        if(userData !== null && userData.id !== null) { console.log(user.id); userInfo = [user.username, user.password, user.data]}
+        if(userData !== null && userData.id !== null) { userInfo = [user.username, user.password, user.data]}
 
         if(this.state.loggedIn) return ( <Redirect to={{pathname: "/dashboard", state: { userInfo: userInfo }}} ></Redirect>)
         return (  
@@ -86,8 +84,12 @@ class LoginScreen extends Component {
                     <input id="password" name="password" type="password" placeholder="Password:" value={this.state.password || ""} onChange={(e) => this.handleChange(e)}></input>
                     <button id="seepass-button" onClick={(e) => {this.seePassword(e)}}><i id="eye-icon" className="fa fa-eye-slash"></i></button>
                 </div>
-               <div id="login-button-wrapper"><button id="login-button" onClick={(e) => this.handleSubmit(e)}>Login</button></div>
-                <div id="sign-up-text">Don't have an account? <br></br> Don't worry, sign up <Link to="/signup">here.</Link></div>
+               <div id="login-button-wrapper"><button class="opt-but" id="login-button" onClick={(e) => this.handleSubmit(e)}>Login</button></div>
+                <div id="sign-up-text">
+                    <span>Don't have an account?</span>
+                    <br></br> 
+                    <div id="sign-up-wrapper"><Link to="/signup"><button className="opt-but">Sign Up</button></Link></div>
+                </div>
             </form> 
             
             </>

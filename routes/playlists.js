@@ -38,6 +38,12 @@ router.route('/findPlaylists').post((req, res) => {
 })
 
 
+router.route('/updatePlaylist').post((req, res) => {
+    let newInfo = req.body.info
+    console.log(newInfo)
+    Playlist.update( {_id: req.body.id }, {playlistName: newInfo.title, playlistDesc: newInfo.desc, songs: newInfo.songs, image: newInfo.image, imageType: newInfo.imageType})
+    .then(song => { res.json(song); console.log("NEW PLAYLIST: ", song) })
+})
 
 
 

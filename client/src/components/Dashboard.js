@@ -47,9 +47,7 @@ class Dashboard extends Component {
             listOfPlaylistID: userInfo[2].playlist,
             id: userInfo[2]._id
         }), function() { 
-            console.log( this.state ); 
-            this.getPlaylistIDs(); this.getPlaylists(); 
-            this.animateElements()
+            this.getPlaylistIDs(); this.getPlaylists(); this.animateTitle();
         })} 
     }
 
@@ -57,33 +55,32 @@ class Dashboard extends Component {
         //this.getPlaylists()
     }
 
-    animateElements() {
+    animateTitle() {
         let dashboardTitle = document.getElementById("dashboard-title")
         dashboardTitle.classList.add("fade-in")
-        setTimeout(function() {
-            let playlistCard = document.getElementById("playlistCard-holder")
-            playlistCard.classList.add("slide-in")
-        }, 250)
-        
+    }
+
+    animatePlaylistCards() {
+        let playlistCard = document.getElementById("playlistCard-holder")
+        playlistCard.classList.add("slide-in")
     }
 
     getPlaylistIDs() {
         let users_url =  serverLink + "/users/" + this.state.id
         axios.get(users_url)
-        .then(res => {console.log(res); this.setState({
+        .then(res => { this.setState({
             listOfPlaylistID: res.data.playlist
-        }, function() { console.log(this.state); this.getPlaylists()})})
+        }, function() {this.getPlaylists()})})
     }
 
     getPlaylists() {
         let currentUserPlaylists = this.state.listOfPlaylistID
-        console.log("CURRENT USER PLAYLISTS: ", currentUserPlaylists)
         axios.post(serverLink + "/playlists/findPlaylists", { playlistArray: currentUserPlaylists })
         .then(res => {
-            console.log(res)
             this.setState({
                 listOfPlaylists: res.data
             })
+            this.animatePlaylistCards()
         })
     }
 
@@ -91,7 +88,6 @@ class Dashboard extends Component {
         const {name, value} = e.target
         const FR = new FileReader();
         const self = this;
-        console.log(name + " " + value)
         if(name === "image") {
             const imageFile = e.target.files[0]
             FR.addEventListener("load", function() {
@@ -115,14 +111,14 @@ class Dashboard extends Component {
             playlistInput: {
                 ...prevState.playlistInput, imagePreview: URL.createObjectURL(imageFile), image: base64Image, imageType: imageFile.type
             }
-        }), function() { console.log(this.state.playlistInput.imageType)})
+        }))
     }
 
     handlePlaylistSubmit = (e) => {
         e.preventDefault();
         let newPlaylist = { playlistName: this.state.playlistInput.title, playlistDesc: this.state.playlistInput.desc, songs: [], image: this.state.playlistInput.image, imageType: this.state.playlistInput.imageType}
         axios.post(serverLink + "/playlists/add", newPlaylist)
-        .then(res => {console.log(res.data); this.updateUserPlaylist(res.data); this.openCloseCP(); this.clearCP(); })
+        .then(res => {this.updateUserPlaylist(res.data); this.openCloseCP(); this.clearCP(); })
 
     }
 
@@ -132,20 +128,18 @@ class Dashboard extends Component {
             this.state.listOfPlaylistID.push(playlistID)
         }
         let listOfIDs = this.state.listOfPlaylistID; let userID = this.state.id;
-        console.log("PLAYLIST IDS: ", listOfIDs)
         axios.post(serverLink + "/users/updatePlaylist", {id: userID, playlist: listOfIDs})
-            .then(res => {console.log(res); this.getPlaylists()})
+            .then(res => {this.getPlaylists()})
     }
 
 
     deletePlaylist(e, index) {
         e.preventDefault();
-        console.log(index)
         let playlistID = this.state.listOfPlaylistID[index]
         this.state.listOfPlaylistID.splice(index, 1)
         this.state.listOfPlaylists.splice(index, 1)
         axios.delete(serverLink + "/playlists/delete/" + playlistID)
-        .then(res => { console.log(res); this.updateUserPlaylist() })
+        .then(res => { this.updateUserPlaylist() })
     }
 
     openCloseCP() {
@@ -171,12 +165,10 @@ class Dashboard extends Component {
             playlistInput: {
                 ...prevState.playlistInput, title: "", desc: "", image: "", imagePreview: "", imageType: ""
             }
-        }), () => {console.log(this.state.playlistInput)})
+        }))
     }
 
     render() { 
-        console.log(this.state.playlistInput)
-        console.log(inDevelopment)
         return (
             <div id="dashboard-wrapper">
                 <div id="dashboard-title">
@@ -188,7 +180,7 @@ class Dashboard extends Component {
                     {this.state.listOfPlaylists.map(currentPlaylist => {
                         let index = this.state.listOfPlaylists.indexOf(currentPlaylist)
                         let ID = this.state.listOfPlaylistID[index]
-                        let songs = this.state.listOfPlaylists[index].songs.length
+                        let songs = this.state.listOfPlaylists[index].songs
                         let image = this.state.listOfPlaylists[index].image
                         let newRoute = "/playlist/" + ID
                         return <Link to={{pathname: newRoute, state: {image: image}}} style={{"textDecoration": "none"}}><PlaylistCard id={ID} songs={songs} key={currentPlaylist.playlistName} title={currentPlaylist.playlistName} desc={currentPlaylist.playlistDesc} image={image} index={index} deletePlaylist={(e, index) => this.deletePlaylist(e, index)} /></Link>
@@ -196,7 +188,6 @@ class Dashboard extends Component {
                 </div>
                 <button class="create-button" onClick={() => this.openCloseCP()} id="create-playlist-button">New Playlist<i id="plus" class="fa fa-plus"></i></button>
                 <div id="create-playlist-wrapper"><CreatePlaylist handleChange={(e) => this.handlePlaylistChange(e)} handleSubmit={(e) => this.handlePlaylistSubmit(e)} image={this.state.playlistInput.imagePreview} title={this.state.playlistInput.title} desc={this.state.playlistInput.desc} /></div>
-                
             </div>
           );
     }

@@ -25,10 +25,7 @@ const Playlist = () => {
 
     
     let { id } = useParams();
-    useEffect(() => {
-        console.log(songArray)
-        console.log(songArrayInfo)
-    })
+   
 
     useEffect(() => {
         fetchData(id)
@@ -48,10 +45,8 @@ const Playlist = () => {
         let createSongPanel = document.getElementById("create-song-wrapper")
         let createButton = document.getElementById("create-song-button")
         let playlistImage = document.getElementById("playlist-wrapper")
-        console.log(createSongPanel.style.display)
         if(createSongPanel) {
             let newSetting = (createSongPanel.style.display == "none" || createSongPanel.style.display == "") ? "block" : "none"
-            console.log(newSetting)
             createSongPanel.style.display = newSetting
             if(newSetting == "block") { 
                 createButton.scrollIntoView()
@@ -78,7 +73,6 @@ const Playlist = () => {
         e.preventDefault();
         axios.post(serverLink + "/songs/add", songInfo)
         .then(res => {
-            console.log("DATA: ", res.data)
             setSongArray([...songArray, res.data])
         })
         openCloseCS()
@@ -93,7 +87,6 @@ const Playlist = () => {
     function updatePlaylists() {
         axios.post(serverLink + "/playlists/updatePlaylistSongs", {id: id, newSongs: songArray})
         .then(res => {
-            console.log(res)
             updateSongInfoArray()
         })
     }
@@ -101,7 +94,6 @@ const Playlist = () => {
     function updateSongInfoArray() {
         axios.post(serverLink + "/songs/findSongs", {songArray: songArray})
         .then(res => {
-            console.log(res)
             setSongArrayInfo(res.data)
         })
     }
@@ -109,13 +101,11 @@ const Playlist = () => {
     function deleteSong(e, id) {
         e.preventDefault();
         axios.delete(serverLink + "/songs/deleteSong/" + id)
-        .then(res => console.log(res))
-        let songIndex = songArray.indexOf(id)
-        console.log(id)
-        console.log(songIndex)
-        songArray.splice(songIndex, 1)
-        console.log("SONGARRAY: ", songArray)
-        updatePlaylists()
+        .then(res => {
+            let songIndex = songArray.indexOf(id)
+            songArray.splice(songIndex, 1)
+            updatePlaylists()
+        })
     }
     return (
         <div id="playlist-wrapper">
@@ -145,7 +135,6 @@ const Playlist = () => {
             .then(res => {
                 data = res.data
                 if(data !== null && data !== undefined) {
-                    console.log("DATA:", data)
                     setPlaylistName(data.playlistName)
                     setPlaylistDesc(data.playlistDesc)
                     setSongArray(data.songs)

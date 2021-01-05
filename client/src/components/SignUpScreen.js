@@ -32,13 +32,11 @@ class LoginScreen extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Submitted: ", this.state)
         axios.post(serverLink + "/users/add", {
             username: this.state.username,
             password: this.state.password
         })
             .then(res => {
-                console.log(res)
                 window.location.href = "/"
                 
             })
@@ -60,7 +58,6 @@ class LoginScreen extends Component {
         let newIcon = classToChange === "fa-eye" ? "fa-eye-slash" : "fa-eye"
         eyeIcon.classList.add(newIcon)
 
-        console.log(classToChange)
     }
 
     
@@ -80,8 +77,12 @@ class LoginScreen extends Component {
                     <input id="password" name="password" type="password" placeholder="Create a password:" value={this.state.password || ""} onChange={(e) => this.handleChange(e)}></input>
                     <button id="seepass-button" onClick={(e) => {this.seePassword(e)}}><i id="eye-icon" class="fa fa-eye-slash"></i></button>
                 </div>
-                <div id="login-button-wrapper"><button id="login-button" onClick={(e) => this.handleSubmit(e)}>Create an Account</button></div>
-                <div id="sign-up-text">Have an account? <br></br> Login <Link to="/">here.</Link></div>
+                <div id="login-button-wrapper"><button id="login-button" className="opt-but" onClick={(e) => this.handleSubmit(e)}>Create an Account</button></div>
+                <div id="sign-up-text">
+                    <span>Have an account?</span>
+                    <br></br> 
+                    <div id="sign-up-wrapper"><Link to="/"><button className="opt-but">Login</button></Link></div>
+                </div>
             </form> 
             
             </>

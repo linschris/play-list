@@ -40,7 +40,6 @@ class Video extends Component {
 
     handleChange = (e) => {
         const {name, value} = e.target;
-        console.log(name + " " + value)
         this.setState(prevState => ({
             ...prevState, [name]: value
         }))
@@ -51,7 +50,7 @@ class Video extends Component {
         let newSetting = this.state[name] ? false : true
         this.setState({
             [name]: newSetting
-        }, function() { console.log(this.state) })
+        })
     }
 
     getEmbedVideo() {
@@ -72,7 +71,6 @@ class Video extends Component {
         let route = serverLink + "/songs/" + id
         axios.get(route)
         .then(res => {
-            console.log(res.data)
             this.setState({
                 title: res.data.songName,
                 link: res.data.songLink,
@@ -84,13 +82,11 @@ class Video extends Component {
     }
     componentDidMount() {
         this.getEmbedVideo()
-        console.log(this.props.match)
         const id = this.props.match.params.id;
         this.fetchData(id)
     }
 
     render() {
-        console.log(this.state)
         return (
             <div id="video-wrapper">
                 <h1 id="video-title">{this.state.title || "Title"}</h1>

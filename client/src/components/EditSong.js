@@ -32,17 +32,11 @@ const EditSong = (props) => {
         let newTitle = (formInput.title || formInput.title === " ") ? formInput.title : originalInfo.songName 
         let newDesc = (formInput.desc || formInput.desc === " ") ? formInput.desc : originalInfo.songDesc 
         let newLink = (formInput.link || formInput.link === " ") ? formInput.link : originalInfo.songLink 
-        console.log(newTitle + " " + newDesc + " " + newLink)
         let newSong = {title: newTitle, desc: newDesc, link: newLink}
-        console.log("ID:", id)
         axios.post(serverLink + "/songs/updateSong", {id: id, info: newSong})
         .then(res => {
-            console.log(res)
-            console.log(id)
-            console.log(location)
             window.location.href = "/playlist/" + location
         })
-        //window.location.href = "" <-- url back
     }
 
     return (

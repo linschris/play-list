@@ -1,4 +1,4 @@
-#sign-up-form {
+#sign-up-form, #sign-in-form {
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -18,9 +18,7 @@
     height: 2rem;
     width: 22.5rem;
 }
-.pass-input {
-    
-}
+
 
 
 .pass-input > *, #user-input > *{
@@ -62,15 +60,58 @@
     left: 0;
 } 
 
-
 #seepass-button:focus {
     outline:none;
 }
+
+#sign-up-text {
+    width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+    /* text-align: center; */
+}
+
+#sign-up-text > span {
+    position: relative;
+    width: 10rem;
+    left: calc(50% - 5rem);
+}
+
+.opt-but {
+    position: relative;
+    width: 15rem !important;
+    left: calc(50% - 7.5rem) !important;
+    margin-left: 0;
+    background-color: rgb(238, 80, 80);
+    color: white;
+    padding: 0.5rem;
+    font-family: inherit;
+    border-radius: 0.25rem;
+    border: 0;
+    margin-top: 1rem;
+}
+
+.opt-but:hover {
+    background-color: rgb(233, 38, 38);
+}
+
 
 @media screen and (min-width: 800px) {
     .pass-input, #user-input {
         width: 40rem !important;
         left: calc(45% - 20rem) !important;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .pass-input, #user-input {
+        width: 15rem !important;
+        left: calc(45% - 7.5rem) !important;
+    }
+    #sign-up-form, #sign-in-form {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
     }
 }
 

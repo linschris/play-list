@@ -10,8 +10,8 @@ body {
 }
 
 .create-wrapper {
-    width: 100vw;
-    height: 75vh;
+    width: 100%;
+    height: 100%;
     background-color: black;
     overflow: hidden;
 }
@@ -60,6 +60,7 @@ input[type="text"]:focus, textarea:focus, input[type="password"]:focus{
     height: 5rem;
 }
 
+
 #create-button {
     width: 50%;
     left: 20%;
@@ -67,8 +68,17 @@ input[type="text"]:focus, textarea:focus, input[type="password"]:focus{
     color: white;
 }
 
+#create-button:hover {
+    background-color: rgb(22, 136, 151);
+    color: white;
+}
+
 .form {
     margin: 0;
+    width: 25rem;
+    height: auto;
+    position: relative;
+    left: calc(50% - 12.5rem)
 }
 
 .form-title {
@@ -82,6 +92,62 @@ input[type="text"]:focus, textarea:focus, input[type="password"]:focus{
     width: 85%; 
     text-align: center;
     color: gray;
+}
+
+#image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 3rem;
+    margin-bottom: 1rem;
+    
+}
+
+#img-inp-tit {
+    color: white;
+}
+
+#image-input {
+    position: absolute;
+    width: 50%;
+    left: 20%;
+    height: 2rem;
+    z-index: 2;
+    opacity: 0;
+}
+
+#img-inp-but {
+    position: absolute;
+    width: 50% !important;
+    left: 20%;
+    height: 2rem;
+    margin-left: 0;
+    background-color: rgb(238, 80, 80);
+    color: white;
+    padding: 0.5rem;
+    font-family: inherit;
+    border-radius: 0.25rem;
+    border: 0;
+}
+
+#img-upload-wrapper {
+    position: relative;
+    color: white;
+    width: 100%;
+    height: 10rem;
+    margin-left: 0;
+    padding: 0;
+}
+
+#img-upload {
+    position: relative;
+    left: calc(50% - 5rem);
+    max-width: 10rem;
+    max-height: 10rem;
+}
+
+
+#img-inp-but:hover {
+    background-color: rgb(207, 37, 37); 
 }
 
 #imageUpload {
@@ -98,4 +164,27 @@ input[type="text"]:focus, textarea:focus, input[type="password"]:focus{
         width: 50rem !important;
         left: calc(50% - 25rem) !important;
     }
+    .form {
+        width: 40rem;
+        left: calc(50% - 20rem)
+    }
+    #playlist-form {
+        left: 0 !important;
+    }
+    
+}
+
+@media screen and (max-width: 400px) {
+    #create-playlist-wrapper {
+        width: 20rem !important;
+        left: calc(50% - 10rem) !important;
+    }
+    .form {
+        width: 20rem;
+        left: calc(50% - 10rem)
+    }
+    #playlist-form {
+        left: 0 !important;
+    }
+    
 }

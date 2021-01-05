@@ -58,9 +58,8 @@
 
 #playlistCard-holder {
     position: relative;
-    top: 100%;
     width: 23rem;
-    left: calc(50% - 11.5rem);
+    left: -100%;
 }
 
 .playlist-card {
@@ -146,7 +145,7 @@
 }
 
 .slide-in {
-    animation: slidein 1s ease 0.5s forwards;
+    animation: slidein 3s ease 1s forwards;
 }
 
 .fade-in {
@@ -155,10 +154,10 @@
 
 @keyframes slidein {
     0% {
-        top: 100%;
+        left: -100%;
     }
     100% {
-        top: 5%;
+        left: calc(50% - 11.5rem);
     }
 }
 @keyframes fadein {
@@ -200,3 +199,31 @@
     color: gray !important;
     font-size: 1rem;
 }
+
+@media screen and (min-width: 800px) {
+    #dashboard-title {
+        margin-top: 5%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #playlistCard-holder {
+        width: 19rem;
+        left: calc(50% - 9.5rem)
+    }
+    @keyframes slidein {
+        0% {
+            left: -200%;
+        }
+        100% {
+            left: calc(50% - 9.5rem);
+        }
+    }
+    .edit-button, .trash-button {
+        font-size: 1rem !important;
+    }
+    #playlist-buttons {
+        margin-left: 0rem;
+    }
+}
+

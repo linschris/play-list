@@ -13,6 +13,3 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// fix edit screens
-// make edit playlist page
-// edit css for both wide and narrow screens (make a narrow media query)

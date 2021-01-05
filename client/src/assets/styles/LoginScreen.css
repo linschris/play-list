@@ -10,16 +10,11 @@
 }
 
 #login-button {
-    position: relative;
-    width: 15rem !important;
-    left: calc(50% - 7.5rem) !important;
-    margin-left: 0;
-    background-color: rgb(39, 168, 185);
-    color: white;
-    padding: 0.5rem;
-    font-family: inherit;
-    border-radius: 0.25rem;
-    border: 0;
+    background-color: rgb(49, 181, 199);
+}
+
+#login-button:hover, #login-button:focus {
+    background-color: rgb(35, 147, 161);
 }
 
 

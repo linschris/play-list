@@ -11,7 +11,6 @@ export default class CreatePlaylist extends React.Component {
     }
    
     render() {
-        console.log("PROPS: ", this.props.title)
         return (
             <>
             <div> 

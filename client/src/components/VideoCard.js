@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 import "../assets/styles/Playlist.css"
 
 function VideoCard(props) {
-    console.log("PROPS", props)
-
-    
 
     return (
         <div id="video-card-wrapper">

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 
 
 const PlaylistCard = (props) => {
-    console.log(props)
     function deletePlaylist(e) {
         props.deletePlaylist(e, props.index);
     }
@@ -15,13 +14,13 @@ const PlaylistCard = (props) => {
                 <div id="playlist-s1-info">
                     <div id="playlist-title"> <i class="fa fa-user"></i> {props.title} </div>
                     <div id="playlist-desc"> <i class="fa fa-pencil"></i> {props.desc} </div>
-                    <div id="playlist-songs"> <i class="fa fa-music"></i> {props.songs} Songs</div>
+                    <div id="playlist-songs"> <i class="fa fa-music"></i> {props.songs.length} Songs</div>
                 </div>
             </div>
             <div id="playlist-s2">
                 <div id="playlist-id"> {props.id} </div>
                 <div id="playlist-buttons">
-                    <Link to="/editPlaylist"><button id="edit-pl-button" class="edit-button"><i class="fa fa-edit"></i></button></Link>
+                    <Link to={{pathname: "/editPlaylist/" + props.id, state: {title: props.title, desc: props.desc, image: props.image, songs: props.songs, imageType: "jpeg"}}}><button id="edit-pl-button" class="edit-button"><i class="fa fa-edit"></i></button></Link>
                     <button id="del-pl-button" class="trash-button" onClick={(e) => deletePlaylist(e)}><i class="fa fa-trash"></i></button>
                 </div>
             </div>
